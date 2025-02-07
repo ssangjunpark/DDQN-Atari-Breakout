@@ -14,11 +14,12 @@ $$Q^\pi(s, a) \equiv \mathbb{E} \left[ R_1 + \gamma R_2 + \dots \mid S_0 = s, A_
 
 Our Q-value functon, which is approximated with the help of neural network, is defined over contious state space S and discrete action space A.
 
-The gradient descent method will be used to minimize Temporal Differce error $\delta_t = Y^{DoubleQ}_t - Q(S_t, A_t; \theta_t)$:
+The gradient descent method will be used to minimize Temporal Difference error $\delta_t = Y^{DoubleQ}_t - Q(S_t, A_t; \theta_t)$:
 
 $$\theta_{t+1} = \theta_t + \alpha\big(Y^{DoubleQ}t - Q(S_t, A_t; \theta_t)\big) \nabla{\theta_t} Q(S_t, A_t; \theta_t)$$
 
 - $Y^{DoubleQ}$ should be subscripted with $t$
+- $\nabla Q(S_t, A_t; \theta_t)$ should be subscripted with $\theta_t$
 
 where the target $Y^{DoubleQ}_t$ is defined as:
 
