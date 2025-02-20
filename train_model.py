@@ -13,21 +13,14 @@ gym.register_envs(ale_py)
 
 from constants import ACTION_SPACE_SIZE,  MAX_EXPERIENCE_BUFEER_SIZE, MIN_EXPERIENCE_BUFFER_SIZE, TARGET_UPDATE_PERIOD_CAP, TARGET_UPDATE_PERIOD_NEW, TARGET_UPDATE_PERIOD_OLD, IM_SIZE
 
-def train_model():
+def train_model(conv_layer_sizes, dense_layer_sizes, gamma, batch_size, num_episodes, epsilon, epsilon_min):
     env = gym.make('ALE/Breakout-v5', render_mode='rgb_array')
 
-    conv_layer_sizes = [(32, 8, 4), (64, 4, 2), (64, 3, 1), (128, 3, 1)]
-    dense_layer_sizes = [512, 256]
-    gamma = 0.99
-    batch_size = 32
-    num_episodes = 3400
+
     total_step = 0 
     experience_replay_buffer = ReplayMemory(MAX_EXPERIENCE_BUFEER_SIZE, IM_SIZE, IM_SIZE, 4, 32)
     episode_rewards = np.zeros(num_episodes)
 
-
-    epsilon = 1.0
-    epsilon_min = 0.1
     epsilon_change = (epsilon - epsilon_min) / 1000000
 
     image_transformer = ImageTransformer(IM_SIZE)

@@ -31,10 +31,13 @@ Where $\theta_t$ is our online weights (from our main Q-Value estimate) and $\th
 
 DDQM improves upon the DQN by using two seperate Q-value estimate (with weights $\theta_t$ and $\theta'_t$) to estmate Q-value for $Y^{DoubleQ}_t$.
 
-## Aditional implementaion details
+## Implementaion details
 * Replay Memory Buffer
 * Image Transformer
 * Custom DDQN
+
+## How to use 
+Toggle between train_model() and test_model() in main.py to train and test the model.
 
 ## Sample Episode (After 3300 episodes of training)
 

@@ -9,14 +9,14 @@ from DDQN import DDQN
 from constants import IM_SIZE, ACTION_SPACE_SIZE
 
 
-def test_model(name, sample_quantity):
+def test_model(name, sample_quantity, conv_layer_sizes, dense_layer_sizes):
     max_reward = 0
     max_reward_idx = 0
     env = gym.make('ALE/Breakout-v5', render_mode='rgb_array')
     env = RecordVideo(env, video_folder='ddqn_tf_atari_improved_test_model', episode_trigger=lambda x : True)
     image_transformer = ImageTransformer(IM_SIZE)
 
-    model = DDQN(4, [(32, 8, 4), (64, 4, 2), (64, 3, 1), (128, 3, 1)], [512, 256])
+    model = DDQN(ACTION_SPACE_SIZE, conv_layer_sizes, dense_layer_sizes)
     
     # initialize model variables 
     model_init_zero_state = np.zeros((1, IM_SIZE, IM_SIZE, 4), dtype=np.float32)
